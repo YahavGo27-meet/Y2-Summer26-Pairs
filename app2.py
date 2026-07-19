@@ -51,4 +51,3 @@ def run_chat2():
         history.append({'role': 'assistant', 'content': reply})
 
 
-run_chat2()
