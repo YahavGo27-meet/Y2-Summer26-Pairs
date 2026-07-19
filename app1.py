@@ -6,7 +6,7 @@ load_dotenv()
 
 client = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
 
-def run_chat():
+def run_chat1():
     print('You: (type exit to quit)')
     #goals = input("what are your goals?")
     system_message = """
