@@ -39,6 +39,7 @@ def run_chat2():
         response = client.messages.create(
             model="claude-haiku-4-5-20251001",
             max_tokens=300,
+            #max_input_tokens=10,
             temperature=0,
             system=system_message,
             messages=history
