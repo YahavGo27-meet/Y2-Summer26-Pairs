@@ -29,6 +29,11 @@ def run_chat1():
 
     while True:
         user_input = input('>> ')
+        
+        MAX_CHARS = 300  
+        if len(user_input) > MAX_CHARS:
+            print(f"Your message is too long. Maximum is {MAX_CHARS} characters.")
+            continue
 
         if user_input.lower() == 'exit':
             break

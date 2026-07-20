@@ -32,14 +32,19 @@ def run_chat2():
     while True:
         user_input = input('>> ')
 
-        if user_input.lower() == 'exit':
+        MAX_CHARS = 300  
+        if len(user_input) > MAX_CHARS:
+            print(f"Your message is too long. Maximum is {MAX_CHARS} characters.")
+            continue
+
+        if user_input.lower() == "exit":
             break
+
 
         history.append({'role': 'user', 'content': user_input})
         response = client.messages.create(
             model="claude-haiku-4-5-20251001",
             max_tokens=300,
-            #max_input_tokens=10,
             temperature=0,
             system=system_message,
             messages=history
