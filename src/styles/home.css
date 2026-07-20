@@ -1,0 +1,182 @@
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 24px 64px;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(37, 99, 235, 0.08), transparent 60%),
+    radial-gradient(1000px 500px at 95% 0%, rgba(15, 118, 110, 0.08), transparent 60%),
+    var(--bg);
+}
+
+.home-header {
+  text-align: center;
+  max-width: 720px;
+  margin-bottom: 56px;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.home-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-soft);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+
+.home-badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+}
+
+.home-title {
+  font-size: clamp(36px, 6vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--text) 0%, #334155 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-subtitle {
+  font-size: 18px;
+  color: var(--text-soft);
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 880px;
+}
+
+.agent-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.agent-card:nth-child(2) { animation-delay: 0.1s; }
+
+.agent-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--accent-soft) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.agent-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-line);
+}
+
+.agent-card:hover::before { opacity: 1; }
+
+.agent-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.agent-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: 32px;
+  background: var(--accent-soft);
+  margin-bottom: 24px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.agent-card:hover .agent-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.agent-name {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  color: var(--accent);
+}
+
+.agent-tagline {
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.55;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.agent-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  transition: gap 0.3s ease;
+}
+
+.agent-card:hover .agent-cta { gap: 12px; }
+
+.agent-cta .arrow {
+  transition: transform 0.3s ease;
+}
+
+.agent-card:hover .agent-cta .arrow {
+  transform: translateX(3px);
+}
+
+.home-footer {
+  margin-top: 56px;
+  font-size: 13px;
+  color: var(--text-mute);
+  text-align: center;
+  animation: fadeIn 0.8s ease both;
+}
+
+.home-footer strong { color: var(--text-soft); font-weight: 600; }
+
+@media (max-width: 720px) {
+  .home { padding: 32px 16px 48px; }
+  .home-header { margin-bottom: 40px; }
+  .home-cards { grid-template-columns: 1fr; gap: 16px; }
+  .agent-card { padding: 24px; }
+  .agent-icon { width: 56px; height: 56px; font-size: 28px; }
+}
