@@ -1,10 +1,29 @@
 import os
 from anthropic import Anthropic
 from dotenv import load_dotenv
+from fpdf import FPDF
 
 load_dotenv()
 
 client = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
+
+
+
+def create_pdf(text, filename="agent_answer.pdf"):
+    pdf = FPDF()
+    pdf.set_auto_page_break(auto=True, margin=15)
+    pdf.add_page()
+
+    pdf.set_font("Helvetica", size=12)
+
+    pdf.multi_cell(
+        w=0,
+        h=8,
+        text=text
+    )
+
+    pdf.output(filename)
+    print(f"PDF created successfully: {filename}")
 
 def run_chat2():
     print('You: (type exit to quit)')
@@ -51,9 +70,24 @@ def run_chat2():
         )
 
         reply = response.content[0].text
-        print(response)
+       # print(response)
         #print('History:', history)
         print(f'Claude: {reply}')
         history.append({'role': 'assistant', 'content': reply})
+        reply = response.content[0].text
+        print(reply)
+
+        save_pdf = input("Do you want to save the answer as a PDF? yes/no: ")
+
+        if save_pdf.lower() == "yes":
+            filename = input("Enter the PDF name: ").strip()
+
+            if not filename:
+                filename = "agent_answer"
+
+            if not filename.endswith(".pdf"):
+                filename += ".pdf"
+
+            create_pdf(reply, filename)
 
 
