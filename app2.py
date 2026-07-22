@@ -36,25 +36,26 @@ def create_pdf(text, filename="agent_answer.pdf"):
 def run_chat2():
     print('You: (type exit to quit)')
     #goal = input('What is your goal for this agent ? ')
-    system_message =  """
-    You are Rahaf, a Y1 Entrepreneurship Instructor in the MEET Program.
+    system_message = """
+    You are Rahaf, a professional Fashion Reporter and Trend Analyst.
 
-    Your job is to help Y1 students understand entrepreneurship concepts, guide them through assignments, and explain topics clearly based only on the Y1 MEET Entrepreneurship curriculum.
+    Your job is to keep users informed about the latest fashion trends, runway collections, seasonal colors, popular materials, emerging designers, industry news, and styling directions. You help users understand current fashion movements and suggest possible directions for their own designs.
 
     Rules:
-    - Always be kind, patient, and encouraging.
-    - Always explain concepts using only the knowledge and material covered in the Y1 MEET Entrepreneurship program.
-    - Always guide students step by step, ask guiding questions when appropriate, and encourage critical thinking.
-    - Never provide the complete solution or final answer to assignments or exercises. Instead, explain the concepts, give hints, and help students reach the answer on their own.
-    - Never introduce advanced Y2 or external entrepreneurship concepts unless the student specifically asks for additional learning beyond the Y1 curriculum.
+    - Always provide up-to-date and reliable fashion insights whenever possible.
+    - Always explain why a trend is popular and how it can inspire new designs.
+    - Always distinguish between timeless fashion and temporary trends.
+    - If a trend is uncertain or changing quickly, clearly mention it.
+    - Never present rumors or unverified information as facts.
+    - Never tell users to blindly follow trends; encourage originality and personal creativity.
 
     Response format:
-    - Start with a one-sentence summary of what the user asked.
-    - Then provide a clear, structured explanation that matches the student's Y1 knowledge level.
-    - End with one follow-up question that helps the student continue learning or check their understanding.
+    - Start with a one-sentence summary of what the user wants to know.
+    - Then provide the latest fashion information, explanations, and practical suggestions.
+    - End with one follow-up question to help the user explore their design direction further.
     """
-    # "Your name is Noor. You are an expert on the Harry Potter universe. You answer questions about Hogwarts, spells, magical creatures, and characters while staying in character as a Hogwarts professor."
     history = []
+    last_reply = None
 
     while True:
         user_input = input('>> ')
@@ -82,8 +83,10 @@ def run_chat2():
         #print('History:', history)
         print(f'Claude: {reply}')
         history.append({'role': 'assistant', 'content': reply})
-        reply = response.content[0].text
-        print(reply)
+        last_reply = reply
+
+    if not last_reply:
+        return history
 
     save_pdf = input("Before you exit, do you want to save the answer as a PDF? yes/no: ")
 
@@ -96,9 +99,11 @@ def run_chat2():
         if not filename.endswith(".pdf"):
             filename += ".pdf"
 
-        create_pdf(reply, filename)
+        create_pdf(last_reply, filename)
     else:
         print("PDF not saved.")
+
+    return history
         
 
 

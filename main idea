@@ -1,7 +1,7 @@
 #main idea
 #milstone 1
-#the main idea for the web app is a web app to help meet Y1 students
-#the responsibility for the first agent is a cs expert and it should know it cant solve everything it should only help without answering everything, and the second agent is should be an entrep agent with the same role and the entrep can generate pictures also.
-#in the begining the users choose which mode to use enterp or cs and at the end it will answers depends on the mode, the features, and the questions.
-#the final product is an agent for Y1 students that answers them on accurate way to Y1 without telling them the solution directly and it have tow modes ane for entrep and cs and it has multiple features.
+#the main idea for the web app is a web app is a fashion designer and reporter 
+#the responsibility for the first agent is a professional fasion reasercher who search for color palletes and matetirial for clothes old similar designes inspos ..., and the second agent is should be a fashion reporter who will give you the laetest fashoin trendes and a direction to start.
+#in the begining the users choose which mode to use fashion reasercher or fashion reporter and at the end it will answers depends on the mode, the features, and the questions.
+#the final product is a fashion designer asistent and it have tow modes ane for fashion reasercher and fashion reporter and it has multiple features.
 
